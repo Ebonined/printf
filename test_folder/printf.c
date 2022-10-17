@@ -67,23 +67,7 @@ int _printf(const char *format, ...)
 			{
 				if (format[i + 1] == *task[j].t)
 				{
-					if (*task[j].t == 'c')
-					{
-						int_pass = va_arg(valist, int);
-						task[j].func2(int_pass);
-					}
-					else if (*task[j].t == 'i')
-					{
-						int_pass = va_arg(valist, int);
-						task[j].func2(int_pass);
-					}
-					else if (*task[j].t == 's')
-					{
-						str_pass = va_arg(valist, char *);
-						task[j].func1(str_pass);
-					}
-					putchar('\n');
-					break;
+					task[j].func(valist);
 				}
 			}
 			else if (format[i] == '%' && format[i + 1] == '%')
