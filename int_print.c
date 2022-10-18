@@ -56,7 +56,7 @@ int int_print(int b)
  * @i: current format index#
  * @j: current index of formated value
  * @i2: secondary index
- * 
+ *
  * Return: int
  *
  */
