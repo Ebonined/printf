@@ -12,28 +12,23 @@ typedef struct play
 	void (*func)(va_list);
 } add_in;
 
-void p_int(int b)
+void p_int(va_list b)
 {
-	int mul = 10;
-    while (b > mul)
-    {
-        /* code */
-    }
-    
+	int output = va_arg(b, int);
+	int_print(output);
 }
 
-void p_char(int b)
+
+void p_char(va_list b)
 {
-	write(1, &b, 1);
+	int output = va_arg(b, int);
+	putchar(output);
 }
 
-void p_str(char *b)
+void p_str(va_list b)
 {
-	int i = 0;
-	while (b[i])
-	{
-		write(1, &b, 1);
-	}
+	char *output = va_arg(b, char *);
+	printf("%s", output);
 }
 
 void main()
@@ -47,11 +42,10 @@ int _printf(const char *format, ...)
 {
 	va_list valist;
 	add_in task[] = {
-		{"i", p_str, p_int},
-		{"c", p_str, p_char},
-		{"s", p_str, p_int}};
-	int i, j, int_pass;
-	char *str_pass;
+		{"i", p_int},
+		{"c", p_char},
+		{"s", p_str}};
+	int i, j;
 
 	// "cis", 's', 3, "ball"
 
@@ -81,4 +75,57 @@ int _printf(const char *format, ...)
 	}
 
 	va_end(valist);
+}
+
+int int_print(int b)
+{
+	int ten = 10;
+	int pr = b / ten;
+	int out, temp, to, times;
+	int tenin = 10;
+
+	times = 0;
+	if (b < 10)
+	{
+		out = (b + '0');
+		times++;
+		write(1, &out, 1);
+		return (0);
+	}
+	temp = 10;
+	while (temp)
+	{
+		temp = temp * 10;
+		if (b == temp)
+			break;
+		if (b / temp < 1)
+		{
+			temp = temp / 10;
+			break;
+		}
+	}
+	if (temp < b)
+	{
+		while (pr > ten)
+		{
+			pr = pr / ten;
+			tenin = tenin * 10;
+		}
+		out = (pr + '0');
+		to = b - (pr * tenin);
+		write(1, &out, 1);
+	}
+	else if (temp == b)
+	{
+		for (i = 0; i < times; i++)
+		{
+			/* code */
+		}
+		
+		out = (pr + '0');
+		to = b - (pr * tenin);
+		write(1, &out, 1);
+	}
+
+	int_print(to);
 }
