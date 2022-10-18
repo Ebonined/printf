@@ -76,6 +76,9 @@ int _printf(const char *format, ...)
 		{"%", p_char, p_mod}};
 	int i, j;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(valist, format);
 
 	i = 0;
