@@ -66,7 +66,6 @@ void p_str(va_list b)
 int _printf(const char *format, ...)
 {
 	va_list valist;
-	char nl = '\n';
 	char count = 0;
 	add_in task[] = {
 		{"i", p_int, p_mod},
@@ -78,9 +77,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(valist, format);
-
 	i = 0;
 	while (format[i])
 	{
@@ -110,7 +107,6 @@ int _printf(const char *format, ...)
 		count++;
 		i++;
 	}
-	write(1, &nl, 1);
 	va_end(valist);
 
 	return (count);
