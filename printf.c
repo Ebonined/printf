@@ -8,8 +8,9 @@ int int_print(int b, int buf);
 
 /**
  * p_int - print integer values
- *
  * @b: va_list type sent to function
+ *
+ * Return: int
  */
 int p_int(va_list b)
 {
@@ -23,8 +24,9 @@ int p_int(va_list b)
 
 /**
  * p_char - print character values
- *
  * @b: va_list type sent to function
+ *
+ * Return: int
  */
 int p_char(va_list b)
 {
@@ -37,8 +39,9 @@ int p_char(va_list b)
 
 /**
  * p_mod - print mod `%` character values
- *
  * @b: char type sent to function
+ *
+ * Return: int
  */
 int p_mod(char b)
 {
@@ -49,8 +52,9 @@ int p_mod(char b)
 
 /**
  * p_str - print string values
- *
  * @b: va_list type sent to function
+ *
+ * Return: int
  */
 int p_str(va_list b)
 {

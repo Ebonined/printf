@@ -7,6 +7,8 @@ int handle(int remcp, int i, int j, int i2, int buf);
  * int_print - converts integer and print
  *
  * @b: integer to convert
+ * @buf: buffer value to count char
+ *
  * Return: int
  */
 int int_print(int b, int buf)
@@ -58,6 +60,7 @@ int int_print(int b, int buf)
  * @remcp: remainder value
  * @i: current format index#
  * @j: current index of formated value
+ * @buf: buffer for number of character
  * @i2: secondary index
  *
  * Return: int
