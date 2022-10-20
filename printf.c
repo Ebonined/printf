@@ -4,48 +4,59 @@
 #include <unistd.h>
 #include "main.h"
 
-int int_print(int b);
+int int_print(int b, int buf);
 
 /**
  * p_int - print integer values
- *
  * @b: va_list type sent to function
+ *
+ * Return: int
  */
-void p_int(va_list b)
+int p_int(va_list b)
 {
+	int buf = 0;
 	int output = va_arg(b, int);
 
-	int_print(output);
+	buf = int_print(output, buf);
+
+	return (buf);
 }
 
 /**
  * p_char - print character values
- *
  * @b: va_list type sent to function
+ *
+ * Return: int
  */
-void p_char(va_list b)
+int p_char(va_list b)
 {
 	int output = va_arg(b, int);
 
 	write(1, &output, 1);
+
+	return (1);
 }
 
 /**
  * p_mod - print mod `%` character values
- *
  * @b: char type sent to function
+ *
+ * Return: int
  */
-void p_mod(char b)
+int p_mod(char b)
 {
 	write(1, &b, 1);
+
+	return (1);
 }
 
 /**
  * p_str - print string values
- *
  * @b: va_list type sent to function
+ *
+ * Return: int
  */
-void p_str(va_list b)
+int p_str(va_list b)
 {
 	int i = 0;
 	char *output = va_arg(b, char *);
@@ -55,6 +66,8 @@ void p_str(va_list b)
 		write(1, &output[i], 1);
 		i++;
 	}
+
+	return (i);
 }
 
 /**
@@ -66,7 +79,8 @@ void p_str(va_list b)
 int _printf(const char *format, ...)
 {
 	va_list valist;
-	char count = 0;
+	int count = 0;
+	int buf = 0;
 	add_in task[] = {
 		{"i", p_int, p_mod},
 		{"d", p_int, p_mod},
@@ -89,9 +103,15 @@ int _printf(const char *format, ...)
 				if (format[i + 1] == *task[j].t)
 				{
 					if (*task[j].t == '%')
-						task[j].func1('%');
+					{
+						buf = task[j].func1('%');
+						count++;
+					}
 					else
-						task[j].func0(valist);
+					{
+						buf = task[j].func0(valist);
+						count += buf;
+					}
 					i++;
 					break;
 				}
@@ -99,12 +119,12 @@ int _printf(const char *format, ...)
 			else
 			{
 				write(1, &format[i], 1);
+				count++;
 				break;
 			}
 
 			j++;
 		}
-		count++;
 		i++;
 	}
 	va_end(valist);

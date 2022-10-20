@@ -1,6 +1,8 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include <stdarg.h>
+
 int _printf(const char *format, ...);
 
 /**
@@ -13,8 +15,8 @@ int _printf(const char *format, ...);
 typedef struct play
 {
 	char *t;
-	void (*func0)(va_list);
-	void (*func1)(char);
+	int (*func0)(va_list);
+	int (*func1)(char);
 } add_in;
 
 #endif /* _MAIN_H_ */
